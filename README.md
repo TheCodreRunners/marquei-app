@@ -18,7 +18,7 @@
 
 ```bash
     # Clone este repositório
-    $ git clone git@github.com:xutway/marquei-app.git
+    $ git clone git@github.com:TheCodreRunners/marquei-app.git
 ```
 ### Entre na pasta do projeto
 
