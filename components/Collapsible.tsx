@@ -5,6 +5,7 @@ import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
+import { ExternalLink } from './ExternalLink';
 
 export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,3 +40,26 @@ const styles = StyleSheet.create({
     marginLeft: 24,
   },
 });
+
+
+const CollapsibleItem = ({ children, title }: PropsWithChildren & { title: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const theme = useColorScheme() ?? 'light';
+
+  return (
+    <Collapsible title="File-based routing">
+    <ThemedText>
+      This app has two screens:{' '}
+      <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
+      <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
+    </ThemedText>
+    <ThemedText>
+      The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
+      sets up the tab navigator.
+    </ThemedText>
+    <ExternalLink href="https://docs.expo.dev/router/introduction">
+      <ThemedText type="link">Learn more</ThemedText>
+    </ExternalLink>
+  </Collapsible>
+  );
+}
