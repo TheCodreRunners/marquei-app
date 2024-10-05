@@ -23,7 +23,7 @@
 ### Entre na pasta do projeto
 
 ```bash
-    $ cd MARinhas
+    $ cd marquei-app
 ```
 
 ### Instale as dependências
