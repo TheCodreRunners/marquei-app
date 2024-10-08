@@ -1,50 +1,119 @@
-# Welcome to your Expo app 👋
+# MArquei
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+## Descrição
+```
+ 
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Logo
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Pré-requisitos
 
-## Join the community
+- [Node.js](https://nodejs.org/en/) ou [Yarn](https://yarnpkg.com/)
+- [ExpoCli](https://docs.expo.io/workflow/expo-cli/) ou [Expo](https://expo.io/)
 
-Join our community of developers creating universal apps.
+### Instalação
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+    # Clone este repositório
+    $ git clone git@github.com:TheCodreRunners/marquei-app.git
+```
+### Entre na pasta do projeto
+
+```bash
+    $ cd marquei-app
+```
+
+### Instale as dependências
+
+```bash
+    $ yarn install
+```
+### Ou
+```bash
+    $ npm install
+```
+### Execute a aplicação
+    
+```bash
+   $ expo start
+```
+
+### Estrutura de pastas
+- app: pasta onde fica os arquivos da aplicação
+- assets: pasta onde fica os arquivos de imagens, fontes e etc.
+- components: pasta onde fica os componentes da aplicação
+- templates: pasta onde fica os templates da aplicação (Template é um componente que tem a função de ser um container para outros componentes)
+- mocked: pasta onde fica os arquivos de mocks (Mocks são arquivos que tem a função de simular dados de uma API)
+
+#### Nomeclarura 
+- feature: Nova funcionalidade
+- bugfix: Correção de bug
+- refactor: Refatoração de código
+- chore: Atualização de dependências, configurações e etc.
+- docs: Atualização de documentação
+
+
+### Padrões de Branches
+- feature/nome-da-task
+- bugfix/nome-da-task
+
+#### Exemplo:
+- feature/MAR-12
+
+### Padronização de Commits
+
+- feat: MAR-12 funcionalidade
+- fix: MAR-12 correção
+- refactor: MAR-12 refatoração
+
+#### Exemplo:
+```bash
+    $ git commit -m "feat: MAR-12 funcionalidade"
+```
+
+### Submeter para o repositório
+
+```bash
+    $ git push origin feature/MAR-12
+```
+#### Caso a branch esteja com nome diferente da branch do repositório local
+
+```bash
+    $ git push origin feature/MAR-12-examplo:feature/MAR-12
+```
+#### Atualizar repositório local (recomendando antes de submeter para o repositório e/ou antes de iniciar uma nova tarefa)
+
+```bash
+    $ git pull origin feature/MAR-12
+```
+
+#### Em caso de conflito, resolva os conflitos e submeta novamente para o repositório
+
+```bash
+    $ git push origin feature/MAR-12
+```
+
+### Comandos úteis
+- Renomear último commit
+```bash
+    $ git commit --amend -m "feat: MAR-12 funcionalidade"
+```
+- Remover branch local
+```bash
+    $ git branch -D feature/MAR-12
+```
+- Rebase (atualizar branch local com a branch do repositório)
+
+```bash
+    $ git rebase origin/feature/MAR-12
+```
+- Remover branch local
+
+```bash
+    $ git branch -D feature/MAR-12
+```
+
+
