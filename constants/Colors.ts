@@ -32,12 +32,12 @@ export const themeShadow = StyleSheet.create({
   shadow: {
     shadowColor: theme === "main" ? "#F229BD" : "#8097A6",
     shadowOffset: {
-      width: -10,
-      height: 16,
+      width: 1,
+      height: 1,
     },
     shadowOpacity: 1.25,
-    shadowRadius: 18.46,
-    elevation: 10,
+    shadowRadius:3,
+    elevation: 5,
   },
 });
 
@@ -51,7 +51,7 @@ export const mainTheme = {
   },
   text: {
     primary: "#000000",
-    secondary: "#FFFFFF",
+    secondary: "#717F7F",
     tertiary: "#F0F0F0",
   },
   images: {
@@ -70,7 +70,7 @@ export const blueTheme = {
   },
   text: {
     primary: "#000000",
-    secondary: "#FFFFFF",
+    secondary: "#717F7F",
     tertiary: "#F0F0F0",
   },
   images: {
