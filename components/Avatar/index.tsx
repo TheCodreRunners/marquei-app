@@ -2,8 +2,8 @@ import { Heading, Icon, User } from "lucide-react-native"
 import { Avatar, AvatarBadge, AvatarFallbackText } from "../ui/avatar"
 import { HStack } from "../ui/hstack"
 import { VStack } from "../ui/vstack"
-import { View } from "react-native"
-import { Text } from "../ui/text"
+import { Text, View } from "react-native"
+
 
 interface AvatarProps {
     title: string;
@@ -15,11 +15,11 @@ const AvatarComponent = (props: AvatarProps) => {
         <HStack space="md" style={{ alignItems: "center" }}>
             <Avatar className="bg-orange-600">
                 <AvatarFallbackText className="text-white">
-                    Arlene McCoy
+                <Text  className="text-white">     Arlene McCoy</Text>
                 </AvatarFallbackText>
             </Avatar>
             <VStack>
-                <Text size="sm" className="text-black text-md text-center">Marketing Coordinator</Text>
+                <Text  className="text-black text-md text-center">Marketing Coordinator</Text>
             </VStack>
         </HStack>
     )
