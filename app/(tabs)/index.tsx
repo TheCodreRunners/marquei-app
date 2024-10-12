@@ -4,9 +4,18 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { Input, InputField } from "@/components/ui/input";
 import { Box } from "@/components/ui/box";
 import { Card } from "@/components/Card";
-import { BabyIcon, BlocksIcon, BrainIcon, Camera, HandHeartIcon, HospitalIcon, PersonStandingIcon } from "lucide-react-native";
+import {
+  BabyIcon,
+  BlocksIcon,
+  BrainIcon,
+  Camera,
+  HandHeartIcon,
+  HospitalIcon,
+  PersonStandingIcon,
+} from "lucide-react-native";
 import { Text } from "@/components/ui/text";
 import AvatarComponent from "@/components/Avatar";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
   const optionsArray = [
@@ -16,11 +25,11 @@ export default function HomeScreen() {
     },
     {
       label: "Cardiologista",
-      icon: <HandHeartIcon color="#007467"  size={43} />,
+      icon: <HandHeartIcon color="#007467" size={43} />,
     },
     {
       label: "Fisioterapia",
-      icon: <Camera color="#007467"  size={43} />,
+      icon: <Camera color="#007467" size={43} />,
     },
     {
       label: "Obstetra",
@@ -28,11 +37,11 @@ export default function HomeScreen() {
     },
     {
       label: "Neurologista",
-      icon: <BrainIcon color="#007467"  size={43} />,
+      icon: <BrainIcon color="#007467" size={43} />,
     },
     {
       label: "Clinico Geral",
-      icon: <HospitalIcon color="#007467"  size={43} />,
+      icon: <HospitalIcon color="#007467" size={43} />,
     },
   ];
 
@@ -40,18 +49,29 @@ export default function HomeScreen() {
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#ffffff", dark: "#ffffff" }}
       headerImage={
-        <View className="p-5 "> <AvatarComponent title="Ronald Richards" icon={<Camera size={43} />} /></View>
+        <View className="p-5 ">
+          <AvatarComponent
+            title="Ronald Richards"
+            icon={<Camera size={43} />}
+          />
+        </View>
       }
     >
       <Box className="flex flex-col">
-        <Text className="text-xl text-black text-center mt-5 my-5">O que você Procura ?</Text>
+        <Text className="text-xl text-black text-center mt-5 my-5">
+          O que você Procura ?
+        </Text>
         <Input
           variant="rounded"
           size="xl"
           isDisabled={false}
           isInvalid={false}
           isReadOnly={false}
-          style={{ width: "100%", backgroundColor: "#F1F5F4", borderColor: "#F1F5F4" }}
+          style={{
+            width: "100%",
+            backgroundColor: "#F1F5F4",
+            borderColor: "#F1F5F4",
+          }}
         >
           <InputField placeholder="Pesquisar" />
         </Input>
@@ -64,8 +84,11 @@ export default function HomeScreen() {
        >*/}
         <View className="flex flex-row flex-wrap justify-between w-full gap-5 py-5 px-2">
           {optionsArray.map((option, index) => (
-            <View className="flex justify-center w-40 align-middle  " key={index}>
-              <Card title={option.label} icon={option.icon} />
+            <View
+              className="flex justify-center w-40 align-middle  "
+              key={index}
+            >
+             <Card title={option.label} icon={option.icon} />
             </View>
           ))}
         </View>
