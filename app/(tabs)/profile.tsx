@@ -1,10 +1,49 @@
+import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+// Define os tipos do formulário
+interface ProfileForm {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  history: string;
+  record: string;
+}
+
 export default function ProfileScreen() {
+  const { control, handleSubmit, setValue, getValues } = useForm<ProfileForm>({
+    defaultValues: {
+      name: 'John Lennon Andrade de Souza',
+      email: 'johnlennonandrade@gmail.com',
+      phone: '(53) 99130-7005',
+      address: 'Rua: Clovis Bevilacqua 461',
+      history: 'Histórico de consultas',
+      record: 'Histórico do paciente',
+    },
+  });
+
+  const [editingField, setEditingField] = useState<keyof ProfileForm | null>(null);
+
+  const onSave = (data: ProfileForm) => {
+    console.log('Updated Profile Data:', data);
+    setEditingField(null); // Fecha o modo de edição
+  };
+
+  const profileFields = [
+    { key: 'name', label: 'Nome' },
+    { key: 'email', label: 'E-mail' },
+    { key: 'phone', label: 'Telefone' },
+    { key: 'address', label: 'Endereço' },
+    { key: 'history', label: 'Histórico' },
+    { key: 'record', label: 'Prontuário' },
+  ] as const;
+
   return (
     <ThemedView style={styles.container}>
       {/* Header Section */}
@@ -14,51 +53,70 @@ export default function ProfileScreen() {
           Meu Perfil
         </ThemedText>
         <Image
-          source={{ uri: 'https://via.placeholder.com/40' }} // Replace with the user's profile image
+          source={{ uri: 'https://via.placeholder.com/40' }} // Imagem do perfil do usuário
           style={styles.profileImage}
         />
       </View>
 
       {/* Profile Info Section */}
       <View style={styles.infoSection}>
-        {profileFields.map(({ label, value }, index) => (
-          <View key={index} style={styles.infoRow}>
+        {profileFields.map(({ key, label }) => (
+          <View key={key} style={styles.infoRow}>
             <ThemedText type="defaultSemiBold" style={styles.label}>
               {label}
             </ThemedText>
             <View style={styles.rowContent}>
-              <ThemedText type="default" style={styles.value}>
-                {value}
-              </ThemedText>
-              <ThemedText type="link" style={styles.editButton}>
-                Edit.
-              </ThemedText>
+              {/* Input ou valor */}
+              {editingField === key ? (
+                <Controller
+                  control={control}
+                  name={key}
+                  render={({ field: { onChange, value } }) => (
+                    <TextInput
+                      style={styles.input}
+                      value={value}
+                      onChangeText={onChange}
+                      autoFocus
+                      onBlur={() => setEditingField(null)} // Fecha o campo ao perder o foco
+                    />
+                  )}
+                />
+              ) : (
+                <ThemedText type="default" style={styles.value}>
+                  {getValues(key)}
+                </ThemedText>
+              )}
+              {/* Botão de Editar/Salvar */}
+              <TouchableOpacity
+                onPress={() => {
+                  if (editingField === key) {
+                    handleSubmit(onSave)(); // Salva os dados
+                  } else {
+                    setEditingField(key); // Entra no modo de edição
+                  }
+                }}
+              >
+                <ThemedText type="link" style={styles.editButton}>
+                  {editingField === key ? 'Save' : 'Edit.'}
+                </ThemedText>
+              </TouchableOpacity>
             </View>
           </View>
         ))}
       </View>
 
-      {/* Buttons */}
+      {/* Botões Agendar/Cancelar */}
       <View style={styles.buttonContainer}>
-        <ThemedView style={[styles.button, styles.scheduleButton]}>
-          <ThemedText style={styles.buttonText}>Agendar</ThemedText>
-        </ThemedView>
-        <ThemedView style={[styles.button, styles.cancelButton]}>
+        <TouchableOpacity style={[styles.button, styles.scheduleButton]}>
+          <ThemedText style={styles.buttonText}>Salvar</ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.cancelButton]}>
           <ThemedText style={styles.buttonText}>Cancelar</ThemedText>
-        </ThemedView>
+        </TouchableOpacity>
       </View>
     </ThemedView>
   );
 }
-
-const profileFields = [
-  { label: 'Nome', value: 'John Lennon Andrade de Souza' },
-  { label: 'E-mail', value: 'johnlennonandrade@gmail.com' },
-  { label: 'Telefone', value: '(53) 99130-7005' },
-  { label: 'Endereço', value: 'Rua: Clovis Bevilacqua 461' },
-  { label: 'Histórico', value: 'Histórico de consultas' },
-  { label: 'Prontuário', value: 'Histórico do paciente' },
-];
 
 const styles = StyleSheet.create({
   container: {
@@ -109,6 +167,13 @@ const styles = StyleSheet.create({
   editButton: {
     fontSize: 14,
     color: '#43C7A7',
+  },
+  input: {
+    borderBottomWidth: 1,
+    borderColor: '#43C7A7',
+    fontSize: 16,
+    color: '#333333',
+    flex: 1,
   },
   buttonContainer: {
     flexDirection: 'row',
