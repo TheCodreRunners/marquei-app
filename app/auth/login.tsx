@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, TextInput, TouchableOpacity, Text, View, Alert, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Button } from '@/components/ui/button';
+import { router } from 'expo-router';
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +13,7 @@ const LoginScreen = () => {
     if (!password) {
       setErrorMessage('Senha obrigatória');
     } else {
-      setErrorMessage('');
+      router.push('/(tabs)/search')
       Alert.alert('Logando...', `E-mail: ${email}`);
     }
   };
